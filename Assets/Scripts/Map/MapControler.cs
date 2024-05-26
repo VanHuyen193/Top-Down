@@ -17,6 +17,8 @@ public class MapControler : MonoBehaviour
     GameObject lastestChunk;
     public float maxOpDist;
     float opDist;
+    float optimizerCooldown;
+    public float optimizerCooldownDur;
 
     void Start()
     {
@@ -111,6 +113,17 @@ public class MapControler : MonoBehaviour
 
     void ChunkOptimizer()
     {
+        optimizerCooldown -= Time.deltaTime;
+
+        if (optimizerCooldown <= 0f)
+        {
+            optimizerCooldown = optimizerCooldownDur;
+        }
+        else
+        {
+            return;
+        }
+
         foreach (GameObject chunk in spawnedChunks)
         {
             opDist = Vector3.Distance(player.transform.position, chunk.transform.position);
