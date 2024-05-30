@@ -13,7 +13,7 @@ public class ShiedController : WeaponController
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedShied = Instantiate(prefab);
+        GameObject spawnedShied = Instantiate(weaponData.Prefab);
         spawnedShied.transform.position = transform.position;
         spawnedShied.transform.parent = transform;
     }

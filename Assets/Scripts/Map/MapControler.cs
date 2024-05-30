@@ -7,7 +7,7 @@ public class MapControler : MonoBehaviour
     public List<GameObject> terrainChunks;
     public GameObject player;
     public float checkerRadius;  //Bán kính để kiểm tra chunk.
-    Vector3 noTerrainPosition;
+    Vector3 noTerrainPosition;   // Vị trí spawn chunk
     public LayerMask terrainMask;
     public GameObject currentChunk;
     PlayerMovement pm;
@@ -40,7 +40,7 @@ public class MapControler : MonoBehaviour
 
         if(pm.moveDir.x > 0 && pm.moveDir.y == 0) // right
         {
-            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Right").position, checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Right").position, checkerRadius, terrainMask))   //Check xem có tồn tại chunk nào hướng này chưa
             {
                 noTerrainPosition = currentChunk.transform.Find("Right").position;
                 SpawnChunk();
@@ -126,6 +126,7 @@ public class MapControler : MonoBehaviour
 
         foreach (GameObject chunk in spawnedChunks)
         {
+            // Nếu khoảng cách lớn hơn hoặc bằng opDist sẽ tắt chunk đó và ngược lại
             opDist = Vector3.Distance(player.transform.position, chunk.transform.position);
             if(opDist > maxOpDist)
             {

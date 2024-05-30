@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class BulletBehaviour : ProjectileWeaponBehaviour
 {
-    BulletController bc;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        bc = FindObjectOfType<BulletController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += direction * bc.speed * Time.deltaTime;
+        transform.position += direction * weaponData.Speed * Time.deltaTime;
     }
 }
