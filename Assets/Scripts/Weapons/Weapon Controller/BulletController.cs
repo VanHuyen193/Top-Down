@@ -15,9 +15,9 @@ public class BulletController : WeaponController
     {
         // Gọi phương thức Attack từ lớp cha
         base.Attack();
-        GameObject spawnedBullet = Instantiate(prefab);
+        GameObject spawnedBullet = Instantiate(weaponData.Prefab);
         spawnedBullet.transform.position = transform.position;
-        // Tham chiếu và thiết lập hướng
+        // Tham chiếu đến BulletBehaviour và thiết lập hướng
         spawnedBullet.GetComponent<BulletBehaviour>().DirectionChecker(pm.lastMoveVector);
 
     }
