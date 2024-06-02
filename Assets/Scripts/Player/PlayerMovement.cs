@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Movement
-    public float moveSpeed;
-    Rigidbody2D rd;
     [HideInInspector]
     public Vector2 moveDir;
     [HideInInspector]
@@ -16,9 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Vector2 lastMoveVector;
 
+    Rigidbody2D rd;
+    PlayerStats player;
+    
     // Start is called before the first frame update
     void Start()
     {
+        player = GetComponent<PlayerStats>();
         rd = GetComponent<Rigidbody2D>();
         lastMoveVector = new Vector2(1, 0f);
     }
@@ -59,6 +60,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        rd.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
+        rd.velocity = new Vector2(moveDir.x * player.currentMoveSpeed, moveDir.y * player.currentMoveSpeed);
     }
 }

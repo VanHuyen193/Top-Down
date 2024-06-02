@@ -20,5 +20,13 @@ public class ShieldBehaviour : MeleeWeaponBehaviour
 
             markedEnemies.Add(collision.gameObject);
         }
+        else if (collision.CompareTag("Props") && !markedEnemies.Contains(collision.gameObject))
+        {
+            if (collision.gameObject.TryGetComponent(out BreakableProps breakable))
+            {
+                breakable.TakeDamage(currentDamage);
+                markedEnemies.Add(collision.gameObject);
+            }
+        }
     }
 }
