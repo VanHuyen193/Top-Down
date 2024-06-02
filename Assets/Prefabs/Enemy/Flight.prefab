@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 921616677116555449}
   - component: {fileID: 4242579607083466936}
   - component: {fileID: 4766522613863619315}
+  - component: {fileID: 4641430975812807119}
   m_Layer: 0
   m_Name: Flight
   m_TagString: Enemy
@@ -180,3 +181,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 1706dd2caa968134a9a0446672708aed, type: 2}
+--- !u!114 &4641430975812807119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4214749301788750535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127950d1ad7151c47b550b08e48c24fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - name: Blue Gem
+    itemPrefab: {fileID: 1107250609975504388, guid: ad41ff39584b5a94e9e68742bab4ba20, type: 3}
+    dropRate: 50
