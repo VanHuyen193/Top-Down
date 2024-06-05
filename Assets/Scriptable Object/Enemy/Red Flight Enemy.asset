@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba7c02976b09b6c4482594875476e79a, type: 3}
-  m_Name: Bullet Weapon
+  m_Script: {fileID: 11500000, guid: 56a9454b1fd7fbc48a77582a65a343b8, type: 3}
+  m_Name: Red Flight Enemy
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3664416773007192035, guid: e02ef1b4b1df13241af9ceb16fd16521, type: 3}
-  damage: 9
-  speed: 12
-  cooldownDuration: 2
-  pierce: 1
+  moveSpeed: 3
+  maxHealth: 10
+  damage: 30

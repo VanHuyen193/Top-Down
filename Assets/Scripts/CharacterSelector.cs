@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterSelector : MonoBehaviour
 {
     public static CharacterSelector instance;
+    // Lưu trữ data đã chọn
     public CharacterScriptableObject characterData;
 
     void Awake()
@@ -21,11 +22,14 @@ public class CharacterSelector : MonoBehaviour
         }
     }
 
+    // Dùng Static để gọi trực tiếp từ chính class này
     public static CharacterScriptableObject GetData()
     {
         return instance.characterData;
     }
 
+
+    // Chọn data của player từ button
     public void SelectCharacter(CharacterScriptableObject character)
     {
         characterData = character;

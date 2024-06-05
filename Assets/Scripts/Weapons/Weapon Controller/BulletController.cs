@@ -19,6 +19,5 @@ public class BulletController : WeaponController
         spawnedBullet.transform.position = transform.position;
         // Tham chiếu đến BulletBehaviour và thiết lập hướng
         spawnedBullet.GetComponent<BulletBehaviour>().DirectionChecker(pm.lastMoveVector);
-
     }
 }
