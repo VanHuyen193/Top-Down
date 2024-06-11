@@ -122,7 +122,6 @@ public class PlayerStats : MonoBehaviour
                 Kill();
             }
         }
-        
     }
     public void Kill()
     {
