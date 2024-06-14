@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
     public WeaponScriptTableObject weaponData;
-    float currentCooldown;
+    protected float currentCooldown;
 
     protected PlayerMovement pm;
 
