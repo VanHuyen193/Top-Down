@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Spawner Attributes")]
     float spawnTimer; // Thời gian spawn ra enemy tiếp theo
-    public int enemiesAlive; // Số enemy còn sống
+    public int enemiesAlive = 0; // Số enemy còn sống
     public int maxEnemiesAllowed; // Số enemy tối đa được xuất hiện trên map
     public bool maxEnemiesReached = false;
     public float waveInterval; // Khoảng thời gian giữa mỗi đợt

@@ -13,6 +13,7 @@ public class BulletBehaviour : ProjectileWeaponBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += direction * currentSpeed * Time.deltaTime;
+        Rigidbody2D rd = gameObject.GetComponent<Rigidbody2D>();
+        rd.AddForce(transform.right * currentSpeed, ForceMode2D.Impulse);
     }
 }
