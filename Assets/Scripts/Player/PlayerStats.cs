@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats instance;
     CharacterScriptableObject characterData;
 
     // Current stats
@@ -30,6 +31,14 @@ public class PlayerStats : MonoBehaviour
     public int level = 1;
     public int experienceCap;
 
+    [Header("# Player Info")]
+    public int playerId;
+    public float health;
+    public float maxHealth = 100;
+    public int kill;
+    public int exp;
+    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
+
     [System.Serializable]
     public class levelRange
     {
@@ -49,6 +58,8 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
+        instance = this;
+
         characterData = CharacterSelector.GetData();
         CharacterSelector.instance.DestroySingleton();
 
@@ -63,6 +74,18 @@ public class PlayerStats : MonoBehaviour
         SpawnedWeapon(characterData.StartingWeapon);
     }
 
+    public void GetExp()
+    {
+        exp++;
+
+        if (exp == nextExp[level])
+        {
+            level++;
+            exp = 0;
+
+        }
+    }
+
     void Start()
     {
         experienceCap = levelRanges[0].experienceCapIncrease;
@@ -70,11 +93,11 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        if(invincibilityTimer > 0)
+        if (invincibilityTimer > 0)
         {
             invincibilityTimer -= Time.deltaTime;
         }
-        else if(isInvincible)
+        else if (isInvincible)
         {
             isInvincible = false;
         }
@@ -90,15 +113,15 @@ public class PlayerStats : MonoBehaviour
 
     void LevelUpChecker()
     {
-        if(experience >= experienceCap)
+        if (experience >= experienceCap)
         {
             level++;
             experience -= experienceCap;
 
             int experienceCapIncrease = 0;
-            foreach(levelRange range in levelRanges)
+            foreach (levelRange range in levelRanges)
             {
-                if(level >= range.startLevel && level <= range.endLevel)
+                if (level >= range.startLevel && level <= range.endLevel)
                 {
                     experienceCapIncrease = range.experienceCapIncrease;
                     break;
@@ -130,11 +153,11 @@ public class PlayerStats : MonoBehaviour
 
     public void RestoreHealth(float amount)
     {
-        if(currentHealth < characterData.MaxHealth)
+        if (currentHealth < characterData.MaxHealth)
         {
             currentHealth += amount;
 
-            if(currentHealth > characterData.MaxHealth)
+            if (currentHealth > characterData.MaxHealth)
             {
                 currentHealth = characterData.MaxHealth;
             }
@@ -143,11 +166,11 @@ public class PlayerStats : MonoBehaviour
 
     void Recover()
     {
-        if(currentHealth < characterData.MaxHealth)
+        if (currentHealth < characterData.MaxHealth)
         {
             currentHealth += currentRecovery * Time.deltaTime;
-            
-            if(currentHealth > characterData.MaxHealth)
+
+            if (currentHealth > characterData.MaxHealth)
             {
                 currentHealth = characterData.MaxHealth;
             }
@@ -160,4 +183,8 @@ public class PlayerStats : MonoBehaviour
         spawnedWeapon.transform.SetParent(transform); // Đặt weapon là con của player
         spawnedWeapons.Add(spawnedWeapon);
     }
+
+    
 }
+
+
