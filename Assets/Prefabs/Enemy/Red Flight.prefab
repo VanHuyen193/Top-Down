@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -375227588, guid: 0437eb9f40117514e97bf9968fc95ce6, type: 3}
-  m_Color: {r: 0.6132076, g: 0.20478815, b: 0.20478815, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.018983841, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -184,6 +184,9 @@ MonoBehaviour:
   currentHealth: 0
   currentDamage: 0
   despawnDistance: 20
+  damageColor: {r: 0, g: 0.8594041, b: 1, a: 1}
+  damageFlashDuration: 0.2
+  deathFadeTime: 0.6
 --- !u!114 &4641430975812807119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,4 +202,4 @@ MonoBehaviour:
   drops:
   - name: Blue Gem
     itemPrefab: {fileID: 1107250609975504388, guid: ad41ff39584b5a94e9e68742bab4ba20, type: 3}
-    dropRate: 50
+    dropRate: 80

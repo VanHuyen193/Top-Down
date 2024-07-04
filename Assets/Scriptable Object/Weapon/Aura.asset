@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cebac9e73170634ea2475da09c78a1f, type: 3}
+  m_Name: Aura
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: ec8f09ea4eb19fb40b693603f23b11f6, type: 3}
+  maxLevel: 2
+  evolutionData: []
+  behaviour: AuraWeapon
+  baseStats:
+    name: Aura
+    description: Damages nearby enemies
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 7353305278903249135, guid: 0e8d6425a77f051419afa8bf64ab9669, type: 3}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifespan: 0
+    damage: 5
+    damageVariance: 1
+    area: 0
+    speed: 0
+    cooldown: 1.3
+    projectileInterval: 0
+    knockback: 1
+    number: 1
+    piercing: 0
+    maxInstances: 50
+  linearGrowth:
+  - name: Level 2
+    description: Reduce Cooldown Duration
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifespan: 0
+    damage: 0
+    damageVariance: 0
+    area: 2
+    speed: 0
+    cooldown: 0
+    projectileInterval: 0
+    knockback: 0
+    number: 0
+    piercing: 0
+    maxInstances: 0
+  randomGrowth: []

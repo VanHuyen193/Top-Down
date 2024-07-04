@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a9454b1fd7fbc48a77582a65a343b8, type: 3}
   m_Name: Red Flight Enemy
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1
   maxHealth: 10
-  damage: 30
+  damage: 13

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public const float DEFAULT_MOVESPEED = 5f;
+
     [HideInInspector]
     public Vector2 moveDir;
     [HideInInspector]
@@ -37,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
 
     void InputManagement()
     {
+        if (GameManager.instance.isGameOver)
+        {
+            return;
+        }
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -60,6 +67,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        rd.velocity = new Vector2(moveDir.x * player.currentMoveSpeed, moveDir.y * player.currentMoveSpeed);
+        if (GameManager.instance.isGameOver)
+        {
+            return;
+        }
+
+        rd.velocity = moveDir * DEFAULT_MOVESPEED * player.Stats.moveSpeed;
+        //rd.velocity = new Vector2(moveDir.x * player.Stats.moveSpeed, moveDir.y * player.Stats.moveSpeed);
     }
 }

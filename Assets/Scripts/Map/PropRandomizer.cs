@@ -6,10 +6,14 @@ public class PropRandomizer : MonoBehaviour
 {
     public List<GameObject> propSpawnPoints;
     public List<GameObject> propPrefabs;
-    // Start is called before the first frame update
+    bool isPropsSpawned = false;
     void Start()
     {
-        SpawnProps();
+        if (gameObject.activeSelf && !isPropsSpawned)
+        {
+            SpawnProps();
+            isPropsSpawned = true;
+        }
     }
 
     void SpawnProps()

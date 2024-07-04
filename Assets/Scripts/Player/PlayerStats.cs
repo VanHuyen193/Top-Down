@@ -1,28 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class PlayerStats : MonoBehaviour
 {
-    CharacterScriptableObject characterData;
+    CharacterData characterData;
+    public CharacterData.Stats baseStats;
+    [SerializeField] CharacterData.Stats actualStats;
 
-    // Current stats
-    [HideInInspector]
-    public float currentHealth;
-    [HideInInspector]
-    public float currentRecovery;
-    [HideInInspector]
-    public float currentMoveSpeed;
-    [HideInInspector]
-    public float currentMight;
-    [HideInInspector]
-    public float currentProjectileSpeed;
-    [HideInInspector]
-    public float currentMagnet;
+    public CharacterData.Stats Stats
+    {
+        get { return actualStats; }
+        set { actualStats = value; }
+    }
 
+    float health;
 
-    public List<GameObject> spawnedWeapons;
+    #region Current Stats Properties
+    public float CurrentHealth
+    {
+        get { return health; }
+        set
+        {
+            if (health != value)
+            {
+                health = value; // Cập nhật giá trị heatlh trong thời gian thực
+                UpdateExpBar();
+            }
+        }
+    }
+    #endregion
 
+    [Header("Visuals")]
+    public ParticleSystem damageEffect; // If damage is dealt.
+    public ParticleSystem blockedEffect; // If armor completely blocks damage
 
     // Kinh nghiệm và level của người chơi
     [Header("Experience/Level")]
@@ -44,33 +57,49 @@ public class PlayerStats : MonoBehaviour
     float invincibilityTimer;
     bool isInvincible;
 
-
     public List<levelRange> levelRanges;
+
+    PlayerCollector collector;
+    PlayerInventory inventory;
+    public int weaponIndex = 0;
+    public int passiveItemIndex = 0;
+
+    [Header("UI")]
+    public Image healthBar;
+    public Image expBar;
+    public TMPro.TextMeshProUGUI levelText;
 
     void Awake()
     {
         characterData = CharacterSelector.GetData();
-        CharacterSelector.instance.DestroySingleton();
 
-        currentHealth = characterData.MaxHealth;
-        currentRecovery = characterData.Recovery;
-        currentMoveSpeed = characterData.MoveSpeed;
-        currentMight = characterData.Might;
-        currentProjectileSpeed = characterData.ProjectileSpeed;
-        currentMagnet = characterData.Magnet;
+        if(CharacterSelector.instance)
+            CharacterSelector.instance.DestroySingleton();
 
-        // Spawn ra vũ khí bắt đầu
-        SpawnedWeapon(characterData.StartingWeapon);
+        inventory = GetComponent<PlayerInventory>();
+        collector = GetComponentInChildren<PlayerCollector>();
+
+        baseStats = actualStats = characterData.stats;
+        collector.SetRadious(actualStats.magnet);
+        health = actualStats.maxHealth;
     }
 
     void Start()
     {
+        inventory.Add(characterData.StartingWeapon);
+
         experienceCap = levelRanges[0].experienceCapIncrease;
+
+        GameManager.instance.AssignChosenCharacterUI(characterData);
+
+        UpdateHealthBar();
+        UpdateExpBar();
+        UpdateLevelText();
     }
 
     void Update()
     {
-        if(invincibilityTimer > 0)
+        if (invincibilityTimer > 0)
         {
             invincibilityTimer -= Time.deltaTime;
         }
@@ -82,10 +111,30 @@ public class PlayerStats : MonoBehaviour
         Recover();
     }
 
+    public void RecalculateStats()
+    {
+        // Start with the base stats of the player
+        actualStats = baseStats;
+
+        // Iterate through all passive slots in the player's inventory
+        foreach (PlayerInventory.Slot s in inventory.passiveSlots)
+        {
+            // Check if the slot contains a Passive item
+            Passive p = s.item as Passive;
+            if (p)
+            {
+                // If a Passive item is found, add its boosts to the actual stats
+                actualStats += p.GetBoosts();
+            }
+        }
+        collector.SetRadious(actualStats.magnet);
+    }
+
     public void IncreaseExperience(int amount)
     {
         experience += amount;
         LevelUpChecker();
+        UpdateExpBar();
     }
 
     void LevelUpChecker()
@@ -105,59 +154,105 @@ public class PlayerStats : MonoBehaviour
                 }
             }
             experienceCap += experienceCapIncrease;
+
+            UpdateLevelText();
+
+            GameManager.instance.StartLevelUp();
         }
+    }
+
+    void UpdateExpBar()
+    {
+        expBar.fillAmount = (float)experience / experienceCap;
+    }
+
+    void UpdateLevelText()
+    {
+        levelText.text = "LV " + level.ToString();
     }
 
     public void TakeDamage(float dmg)
     {
         if (!isInvincible)
         {
-            currentHealth -= dmg;
+            // Take armor into account before dealing the damage
+            dmg -= actualStats.armor;
+
+            if(dmg > 0)
+            {
+                // Deal the damage
+                CurrentHealth -= dmg;
+
+                // If there is a damage effect assigned, play it
+                if (damageEffect)
+                {
+                    Destroy(Instantiate(damageEffect, transform.position, Quaternion.identity), 2f);
+                }
+
+                if (CurrentHealth <= 0)
+                {
+                    Kill();
+                }
+            }
+            else
+            {
+                // If there is a blocked effect assigned, play it
+                if (blockedEffect)
+                    Destroy(Instantiate(blockedEffect, transform.position, Quaternion.identity), 5f);
+            }
 
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
 
-            if (currentHealth < 0)
-            {
-                Kill();
-            }
+            UpdateHealthBar();
         }
     }
+
+    void UpdateHealthBar()
+    {
+        // Update the health bar
+        healthBar.fillAmount = CurrentHealth / actualStats.maxHealth;
+    }
+
     public void Kill()
     {
-        Debug.Log("Player is dead");
+        if (!GameManager.instance.isGameOver)
+        {
+            GameManager.instance.AssignLevelReachedUI(level);
+            GameManager.instance.AssignChosenWeaponsAndPassiveItemsUI(inventory.weaponSlots, inventory.passiveSlots);
+            GameManager.instance.GameOver();
+        }
     }
 
     public void RestoreHealth(float amount)
     {
-        if(currentHealth < characterData.MaxHealth)
+        if(CurrentHealth < actualStats.maxHealth)
         {
-            currentHealth += amount;
+            CurrentHealth += amount;
 
-            if(currentHealth > characterData.MaxHealth)
+            if(CurrentHealth > actualStats.maxHealth)
             {
-                currentHealth = characterData.MaxHealth;
+                CurrentHealth = actualStats.maxHealth;
             }
+
+            UpdateHealthBar();
         }
     }
 
     void Recover()
     {
-        if(currentHealth < characterData.MaxHealth)
+        if(CurrentHealth < actualStats.maxHealth)
         {
-            currentHealth += currentRecovery * Time.deltaTime;
+            CurrentHealth += Stats.recovery * Time.deltaTime;
             
-            if(currentHealth > characterData.MaxHealth)
+            if(CurrentHealth > actualStats.maxHealth)
             {
-                currentHealth = characterData.MaxHealth;
+                CurrentHealth = actualStats.maxHealth;
             }
+
+            UpdateHealthBar();
         }
     }
 
-    public void SpawnedWeapon(GameObject weapon)
-    {
-        GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
-        spawnedWeapon.transform.SetParent(transform); // Đặt weapon là con của player
-        spawnedWeapons.Add(spawnedWeapon);
-    }
+    
 }

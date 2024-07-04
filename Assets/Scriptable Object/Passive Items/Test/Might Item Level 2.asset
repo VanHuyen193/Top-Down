@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a02e83a8bc31f934b81a67e40beea1d8, type: 3}
+  m_Name: Might Item Level 2
+  m_EditorClassIdentifier: 
+  multipler: 150
+  level: 2
+  nextLevelPrefab: {fileID: 0}
+  name: Might Level 2
+  description: plus 2
+  icon: {fileID: -767469533, guid: a1871835a9347064a99d150e89b91e81, type: 3}

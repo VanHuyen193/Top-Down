@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a9454b1fd7fbc48a77582a65a343b8, type: 3}
   m_Name: Flight Enemy
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 0.7
   maxHealth: 10
-  damage: 30
+  damage: 10

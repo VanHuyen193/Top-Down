@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7c02976b09b6c4482594875476e79a, type: 3}
+  m_Name: Evolved Bullet Weapon
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3664416773007192035, guid: 2a17f8a1dc16e8a48832d6418cd69c9c, type: 3}
+  damage: 15
+  speed: 15
+  cooldownDuration: 3
+  pierce: 2
+  level: 0
+  nextLevelPrefab: {fileID: 0}
+  name: 
+  description: 
+  icon: {fileID: 688401085, guid: a1871835a9347064a99d150e89b91e81, type: 3}
