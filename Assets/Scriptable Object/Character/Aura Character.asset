@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee736d1f8910fe46acccc38361d6e7e, type: 3}
   m_Name: Aura Character
   m_EditorClassIdentifier: 
-  icon: {fileID: 673321335, guid: 98e6bfc5ac489b741b4943738368360c, type: 3}
+  icon: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
   name: Aura Character
   startingWeapon: {fileID: 11400000, guid: b1083805f6b75a84783c7a99a169825a, type: 2}
   stats:

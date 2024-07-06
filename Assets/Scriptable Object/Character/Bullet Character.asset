@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee736d1f8910fe46acccc38361d6e7e, type: 3}
   m_Name: Bullet Character
   m_EditorClassIdentifier: 
-  icon: {fileID: -1158654440, guid: 98e6bfc5ac489b741b4943738368360c, type: 3}
+  icon: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
   name: Bullet Character
   startingWeapon: {fileID: 11400000, guid: 90eb82c784c305a43ad84e8ef91f8e4b, type: 2}
   stats:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee736d1f8910fe46acccc38361d6e7e, type: 3}
   m_Name: Whip Character
   m_EditorClassIdentifier: 
-  icon: {fileID: -1066573797, guid: 0ace41a1500663e4ebd17b0f88a801c3, type: 3}
+  icon: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
   name: Whip Character
   startingWeapon: {fileID: 11400000, guid: 56a2791d77da8fc4b8b7b85b2e46da1e, type: 2}
   stats:
