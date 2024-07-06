@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 0.5
+  collectedClip: {fileID: 8300000, guid: f5bcebca37d13ba40ba2dff4e3cb0407, type: 3}
   bobbingAnimation:
     frequency: 2
     direction: {x: 0, y: 0.3}

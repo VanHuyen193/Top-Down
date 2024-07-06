@@ -7,16 +7,15 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    public enum GameState
-    {
-        Gameplay,
-        Paused,
-        GameOver,
-        LevelUp
-    }
+    public enum GameState { Gameplay, Paused, GameOver, LevelUp, GameOverSTART }
     public GameState currentState;
     public GameState previousState;
+
+    [Header("Music")]
+    public GameObject backgroundMusic;
+    public AudioClip gameOverSound;
+    public AudioClip levelUpSound;
+    public AudioClip gamePlaySound;
 
     [Header("Damage Text Setting")]
     public Canvas damageTextCanvas;
@@ -28,6 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject resultsScreen;
     public GameObject levelUpScreen;
+    public GameObject gameOverScreen;
 
     [Header("Current Stat Displays")]
     public TMPro.TextMeshProUGUI currentHealthDisplay;
@@ -49,17 +49,32 @@ public class GameManager : MonoBehaviour
     public float timeLimit;
     float stopwatchTime;
     public TMPro.TextMeshProUGUI stopwatchDisplay;
-    
+
     // Flag to check if the game is over
     public bool isGameOver = false;
+
     // Flag to check if the player is choosing their upgrades
     public bool choosingUpgrade;
 
     // Reference to the player's game object
     public GameObject playerObject;
+
+    // Delay for displaying the actual game over screen
+    public float gameOverStartDelay = 2.0f; // Adjust this value as needed
+
+    // Duration for the fade effect
+    public float fadeDuration = 1.0f;
+
+    AudioSource audioSource; // Play the music
+
+    void Start()
+    {
+        audioSource = backgroundMusic.GetComponent<AudioSource>();
+    }
+
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -69,6 +84,7 @@ public class GameManager : MonoBehaviour
         }
         DisableScreens();
     }
+
     void Update()
     {
         switch (currentState)
@@ -80,13 +96,15 @@ public class GameManager : MonoBehaviour
             case GameState.Paused:
                 CheckForPauseAndResume();
                 break;
-            case GameState.GameOver:
+            case GameState.GameOverSTART:
                 if (!isGameOver)
                 {
                     isGameOver = true;
-                    Time.timeScale = 0f; // Stop the game entirely
-                    Debug.Log("GAME IS OVER");
-                    DisplayResults();
+                    Time.timeScale = 0f;
+                    gameOverScreen.SetActive(true);
+                    Debug.Log("GAME IS OVER START");
+                    PlaySound();
+                    StartCoroutine(TransitionToGameOver());
                 }
                 break;
             case GameState.LevelUp:
@@ -95,6 +113,7 @@ public class GameManager : MonoBehaviour
                     choosingUpgrade = true;
                     Time.timeScale = 0f;
                     Debug.Log("Upgrades shown");
+                    PlaySound();
                     levelUpScreen.SetActive(true);
                 }
                 break;
@@ -118,27 +137,22 @@ public class GameManager : MonoBehaviour
             tmPro.font = textFont;
         }
         rect.position = referenceCamera.WorldToScreenPoint(target.position);
-
         Destroy(textObj, duration);
-
         textObj.transform.SetParent(instance.damageTextCanvas.transform);
         textObj.transform.SetSiblingIndex(0);
-
         WaitForEndOfFrame w = new WaitForEndOfFrame();
         float t = 0;
         float yOffset = 0;
-        while(t < duration)
+        while (t < duration)
         {
             // Wait for a frame and update the time
             yield return w;
             t += Time.deltaTime;
-
             // Check if the textObj is still valid
             if (textObj != null)
             {
                 // Fade the text to the right alpha value
                 tmPro.color = new Color(tmPro.color.r, tmPro.color.g, tmPro.color.b, 1 - t / duration);
-
                 yOffset += speed * Time.deltaTime;
                 if (target != null)
                 {
@@ -156,24 +170,44 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
         // Find a relevant camera that we can use to convert the world
         // Position to a screen position
         if (!instance.referenceCamera)
         {
             instance.referenceCamera = Camera.main;
         }
-
         instance.StartCoroutine(instance.GenerateFloatingTextCoroutine(text, target, duration, speed));
+    }
+
+    void PlayOneShotSound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
+    void PlaySound()
+    {
+        switch (currentState)
+        {
+            case GameState.GameOverSTART:
+                audioSource.Stop();
+                PlayOneShotSound(gameOverSound);
+                break;
+            case GameState.LevelUp:
+                PlayOneShotSound(levelUpSound);
+                break;
+            default:
+                break;
+        }
     }
 
     public void ChangeState(GameState newState)
     {
         currentState = newState;
     }
+
     public void PauseGame()
     {
-        if(currentState != GameState.Paused)
+        if (currentState != GameState.Paused)
         {
             previousState = currentState;
             ChangeState(GameState.Paused);
@@ -182,9 +216,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("Game is paused");
         }
     }
+
     public void ResumeGame()
     {
-        if(currentState == GameState.Paused)
+        if (currentState == GameState.Paused)
         {
             ChangeState(previousState);
             Time.timeScale = 1f;
@@ -192,11 +227,12 @@ public class GameManager : MonoBehaviour
             Debug.Log("Game is resumed");
         }
     }
+
     void CheckForPauseAndResume()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(currentState == GameState.Paused)
+            if (currentState == GameState.Paused)
             {
                 ResumeGame();
             }
@@ -206,38 +242,72 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
     void DisableScreens()
     {
         pauseScreen.SetActive(false);
         resultsScreen.SetActive(false);
         levelUpScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
     }
+
     public void GameOver()
     {
         timeSurvivedDisplay.text = stopwatchDisplay.text;
-        ChangeState(GameState.GameOver);
+        ChangeState(GameState.GameOverSTART);
     }
-    void DisplayResults()
+
+    IEnumerator TransitionToGameOver()
+    {
+        yield return new WaitForSecondsRealtime(gameOverStartDelay);
+        ChangeState(GameState.GameOver);
+        StartCoroutine(FadeInResultsScreen());
+        gameOverScreen.SetActive(false);
+    }
+
+    IEnumerator FadeInResultsScreen()
     {
         resultsScreen.SetActive(true);
+        CanvasGroup canvasGroup = resultsScreen.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = resultsScreen.AddComponent<CanvasGroup>();
+        }
+        canvasGroup.alpha = 0f;
+
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+            canvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
+            yield return null;
+        }
     }
+
+    //void DisplayResults()
+    //{
+    //    resultsScreen.SetActive(true);
+    //}
+
     public void AssignChosenCharacterUI(CharacterData chosenCharacterData)
     {
         chosenCharacterImage.sprite = chosenCharacterData.Icon;
         chosenCharacterName.text = chosenCharacterData.Name;
     }
+
     public void AssignLevelReachedUI(int levelReachedData)
     {
         levelReachedDisplay.text = levelReachedData.ToString();
     }
+
     public void AssignChosenWeaponsAndPassiveItemsUI(List<PlayerInventory.Slot> chosenWeaponsData, List<PlayerInventory.Slot> chosenPassiveItemsData)
     {
-        if(chosenWeaponsData.Count != chosenWeaponsUI.Count || chosenPassiveItemsData.Count != chosenPassiveItemsUI.Count)
+        if (chosenWeaponsData.Count != chosenWeaponsUI.Count || chosenPassiveItemsData.Count != chosenPassiveItemsUI.Count)
         {
             Debug.Log("Chosen weapons and passive items data lists have different lengths");
             return;
         }
-        for(int i = 0; i < chosenWeaponsUI.Count; i++)
+        for (int i = 0; i < chosenWeaponsUI.Count; i++)
         {
             if (chosenWeaponsData[i].image.sprite)
             {
@@ -262,29 +332,30 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
     void UpdateStopwatch()
     {
         stopwatchTime += Time.deltaTime;
-
         UpdateStopwatchDisplay();
-
-        if(stopwatchTime > timeLimit)
+        if (stopwatchTime > timeLimit)
         {
             playerObject.SendMessage("Kill");
         }
     }
+
     void UpdateStopwatchDisplay()
     {
         int minutes = Mathf.FloorToInt(stopwatchTime / 60);
         int seconds = Mathf.FloorToInt(stopwatchTime % 60);
-
         stopwatchDisplay.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
     public void StartLevelUp()
     {
         ChangeState(GameState.LevelUp);
-        playerObject.SendMessage("RemoveAndApplyUpgrades"); ;
+        playerObject.SendMessage("RemoveAndApplyUpgrades");
     }
+
     public void EndLevelUp()
     {
         choosingUpgrade = false;

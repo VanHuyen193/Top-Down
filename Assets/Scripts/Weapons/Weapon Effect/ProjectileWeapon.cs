@@ -51,9 +51,9 @@ public class ProjectileWeapon : Weapon
             owner.transform.position + (Vector3)(GetSpawnOffset(spawnAngle)),
             Quaternion.Euler(0, 0, spawnAngle)
         );
-
         prefab.weapon = this;
         prefab.owner = owner;
+        owner.PlaySound(prefab.shootSound); // Play sound
 
         ActivateCooldown(true);
         

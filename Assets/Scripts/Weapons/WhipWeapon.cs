@@ -42,6 +42,7 @@ public class WhipWeapon : ProjectileWeapon
             owner.transform.position + (Vector3)spawnOffset,
             Quaternion.identity
         );
+        owner.PlaySound(prefab.shootSound); // Play sound
         prefab.owner = owner; // Set ourselves to be the owner
     
         // Flip the projectile's sprite

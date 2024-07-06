@@ -17,6 +17,7 @@ public class Projectile : WeaponEffect
     public DamageSource damageSource = DamageSource.projectile;
     public bool hasAutoAim = false;
     public Vector3 rotationSpeed = new Vector3(0,0,0);
+    public AudioClip shootSound; // Sound effect
 
     protected Rigidbody2D rb;
     protected int piercing;

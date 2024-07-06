@@ -13,23 +13,21 @@ public class Aura : WeaponEffect
         foreach (KeyValuePair<EnemyStats, float> pair in affectedTargsCopy)
         {
             affectedTargets[pair.Key] -= Time.deltaTime;
-            if(pair.Value <= 0)
+            if (pair.Value <= 0)
             {
-                if(pair.Value <= 0)
+
+                if (targetsToUnaffect.Contains(pair.Key))
                 {
-                    if (targetsToUnaffect.Contains(pair.Key))
-                    {
-                        // If target is marked for removal, remove it
-                        affectedTargets.Remove(pair.Key);
-                        targetsToUnaffect.Remove(pair.Key);
-                    }
-                    else
-                    {
-                        // Reset the cooldown and deal damage
-                        Weapon.Stats stats = weapon.GetStats();
-                        affectedTargets[pair.Key] = stats.cooldown * owner.Stats.cooldown;
-                        pair.Key.TakeDamage(GetDamage(), transform.position, stats.knockback);
-                    }
+                    // If target is marked for removal, remove it
+                    affectedTargets.Remove(pair.Key);
+                    targetsToUnaffect.Remove(pair.Key);
+                }
+                else
+                {
+                    // Reset the cooldown and deal damage
+                    Weapon.Stats stats = weapon.GetStats();
+                    affectedTargets[pair.Key] = stats.cooldown * owner.Stats.cooldown;
+                    pair.Key.TakeDamage(GetDamage(), transform.position, stats.knockback);
                 }
             }
         }

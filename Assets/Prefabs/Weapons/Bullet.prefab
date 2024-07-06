@@ -79,6 +79,7 @@ MonoBehaviour:
   damageSource: 0
   hasAutoAim: 1
   rotationSpeed: {x: 0, y: 0, z: 0}
+  shootSound: {fileID: 8300000, guid: c9fff359eab54c846a10ca639795c5d1, type: 3}
 --- !u!60 &2467017739989200023
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class Pickup : MonoBehaviour
     Vector2 initialPosition;
     float initialOffset;
 
+    public AudioClip collectedClip;
+
     // To represent the bobbing animation of the object
     [System.Serializable]
     public struct BobbingAnimation
@@ -76,5 +78,6 @@ public class Pickup : MonoBehaviour
         if (!target) return;
         if (experience != 0) target.IncreaseExperience(experience);
         if(health != 0) target.RestoreHealth(health);
+        target.PlaySound(collectedClip);
     }
 }

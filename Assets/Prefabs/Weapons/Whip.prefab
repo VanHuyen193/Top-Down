@@ -4940,6 +4940,7 @@ MonoBehaviour:
   damageSource: 1
   hasAutoAim: 0
   rotationSpeed: {x: 0, y: 0, z: 0}
+  shootSound: {fileID: 8300000, guid: b03e4e123a646524582901c15310c88d, type: 3}
 --- !u!61 &1894382327634783399
 BoxCollider2D:
   m_ObjectHideFlags: 0

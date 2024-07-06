@@ -33,6 +33,8 @@ public class PlayerStats : MonoBehaviour
     }
     #endregion
 
+    AudioSource audioSource; // Play the music of the effects
+
     [Header("Visuals")]
     public ParticleSystem damageEffect; // If damage is dealt.
     public ParticleSystem blockedEffect; // If armor completely blocks damage
@@ -68,6 +70,8 @@ public class PlayerStats : MonoBehaviour
     public Image healthBar;
     public Image expBar;
     public TMPro.TextMeshProUGUI levelText;
+    public TMPro.TextMeshProUGUI currentHealthText;
+    int currentHealthRound; // lam tron CurrentHealth
 
     void Awake()
     {
@@ -86,13 +90,18 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         inventory.Add(characterData.StartingWeapon);
 
         experienceCap = levelRanges[0].experienceCapIncrease;
 
         GameManager.instance.AssignChosenCharacterUI(characterData);
 
+        currentHealthRound = (int)CurrentHealth;
+
         UpdateHealthBar();
+        UpdateHealthText();
         UpdateExpBar();
         UpdateLevelText();
     }
@@ -109,6 +118,12 @@ public class PlayerStats : MonoBehaviour
         }
 
         Recover();
+    }
+
+    // Play the music of the effects
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 
     public void RecalculateStats()
@@ -205,6 +220,7 @@ public class PlayerStats : MonoBehaviour
             isInvincible = true;
 
             UpdateHealthBar();
+            UpdateHealthText();
         }
     }
 
@@ -212,6 +228,13 @@ public class PlayerStats : MonoBehaviour
     {
         // Update the health bar
         healthBar.fillAmount = CurrentHealth / actualStats.maxHealth;
+    }
+
+    void UpdateHealthText()
+    {
+        currentHealthRound = (int)Mathf.Round(CurrentHealth);
+        if (currentHealthRound < 0) currentHealthRound = 0;
+        currentHealthText.text = string.Format("{0}/{1}", currentHealthRound, actualStats.maxHealth);
     }
 
     public void Kill()
@@ -236,6 +259,7 @@ public class PlayerStats : MonoBehaviour
             }
 
             UpdateHealthBar();
+            UpdateHealthText();
         }
     }
 
@@ -251,6 +275,7 @@ public class PlayerStats : MonoBehaviour
             }
 
             UpdateHealthBar();
+            UpdateHealthText();    
         }
     }
 
