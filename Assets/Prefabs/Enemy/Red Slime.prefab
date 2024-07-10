@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4766522613863619315}
   - component: {fileID: 4641430975812807119}
   m_Layer: 0
-  m_Name: Slime
+  m_Name: Red Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1071570707, guid: 55a222b6c4f9bb24a9d54f792f074132, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.0037735105, b: 0.0037735105, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -142,7 +142,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022849798, y: 0.022849739}
+  m_Offset: {x: 0.0034621954, y: -0.00069256127}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -153,7 +153,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.595757, y: 0.49652112}
+  m_Size: {x: 0.5209756, y: 0.3995823}
   m_EdgeRadius: 0
 --- !u!114 &4242579607083466936
 MonoBehaviour:
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4261501ec6e3b53468ab0c0c0b275471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 1706dd2caa968134a9a0446672708aed, type: 2}
+  enemyData: {fileID: 11400000, guid: ce5918562befa71408d4a5013ae6898a, type: 2}
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0
@@ -202,4 +202,4 @@ MonoBehaviour:
   drops:
   - name: Blue Gem
     itemPrefab: {fileID: 1107250609975504388, guid: ad41ff39584b5a94e9e68742bab4ba20, type: 3}
-    dropRate: 50
+    dropRate: 100
