@@ -60,7 +60,7 @@ public class UIStatsDisplay : MonoBehaviour
                 float percentage = Mathf.Round(fval * 100 - 100);
             
                 // If the stat value is 0, just put as dash.
-                if(Mathf.Approximately(percentage, 0))
+                if(percentage == 0)
                 {
                     values.Append('-').Append('\n');
                 }
@@ -68,13 +68,12 @@ public class UIStatsDisplay : MonoBehaviour
                 {
                     if(percentage > 0)
                     {
-                        values.Append('+');
+                        values.Append('+').Append(percentage).Append('%').Append('\n');
                     }
                     else
                     {
-                        values.Append('-');
+                        values.Append(percentage).Append('%').Append('\n');
                     }
-                    values.Append(percentage).Append('%').Append('\n');
                 }
             }
             else

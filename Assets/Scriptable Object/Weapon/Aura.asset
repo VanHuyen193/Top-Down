@@ -41,7 +41,7 @@ MonoBehaviour:
     maxInstances: 50
   linearGrowth:
   - name: Level 2
-    description: Reduce Cooldown Duration
+    description: Increase area
     projectilePrefab: {fileID: 0}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
     damageVariance: 0
     area: 2
     speed: 0
-    cooldown: 0
+    cooldown: -0.5
     projectileInterval: 0
     knockback: 0
     number: 0

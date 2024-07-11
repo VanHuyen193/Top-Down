@@ -289,25 +289,6 @@ public class PlayerInventory : MonoBehaviour
         return -1;
     }
 
-    //public void LevelUpWeapon(int slotIndex, int upgradeIndex)
-    //{
-    //    if(weaponSlots.Count > slotIndex)
-    //    {
-    //        Weapon weapon = weaponSlots[slotIndex].item as Weapon;
-    //
-    //        if (!weapon.DoLevelUp())
-    //        {
-    //            Debug.LogWarning("Failed to level up");
-    //            return;
-    //        }
-    //    }
-    //
-    //    if(GameManager.instance != null && GameManager.instance.choosingUpgrade)
-    //    {
-    //        GameManager.instance.EndLevelUp();
-    //    }
-    //}
-
     // Overload so that we can use both ItemData or Item to level up an item in the inventory
     public bool LevelUp(ItemData data)
     {
@@ -338,27 +319,6 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
-    //public void LevelUpPassiveItem(int slotIndex, int upgradeIndex)
-    //{
-    //    if (passiveSlots.Count > slotIndex)
-    //    {
-    //        Passive p = passiveSlots[slotIndex].item as Passive;
-    //
-    //        // Don't level up the weapon if it is already at max level
-    //        if (!p.DoLevelUp())
-    //        {
-    //            Debug.LogWarning("Failed to level up");
-    //            return;
-    //        }
-    //    }
-    //
-    //    if (GameManager.instance != null && GameManager.instance.choosingUpgrade)
-    //    {
-    //        GameManager.instance.EndLevelUp();
-    //    }
-    //    player.RecalculateStats();
-    //}
-
     // Check a list of slots to see if there are any slots left.
     int GetSlotsLeft(List<Slot> slots)
     {
@@ -369,120 +329,6 @@ public class PlayerInventory : MonoBehaviour
         }
         return count;
     }
-
-    // void ApplyUpgradeOptions()
-    // {
-    //     List<WeaponData> availableWeaponUpgrades = new List<WeaponData>(availableWeapons);
-    //     List<PassiveData> availablePassiveUpgrades = new List<PassiveData>(availablePassives);
-    // 
-    //     foreach (UpgradeUI upgradeOption in upgradeUIOptions)
-    //     {
-    //         if (availableWeaponUpgrades.Count == 0 && availablePassiveUpgrades.Count == 0)
-    //         {
-    //             return;
-    //         }
-    // 
-    //         int upgradeType;
-    // 
-    //         if (availableWeaponUpgrades.Count == 0)
-    //         {
-    //             upgradeType = 2;
-    //         }
-    //         else if (availablePassiveUpgrades.Count == 0)
-    //         {
-    //             upgradeType = 1;
-    //         }
-    //         else
-    //         {
-    //             upgradeType = UnityEngine.Random.Range(1, 3);
-    //         }
-    // 
-    //         if (upgradeType == 1)
-    //         {
-    //             WeaponData chosenWeaponUpgrade = availableWeaponUpgrades[UnityEngine.Random.Range(0, availableWeaponUpgrades.Count)];
-    //             availableWeaponUpgrades.Remove(chosenWeaponUpgrade);
-    // 
-    //             if (chosenWeaponUpgrade != null)
-    //             {
-    //                 EnableUpgradeUI(upgradeOption);
-    // 
-    //                 bool isLevelUp = false;
-    //                 for (int i = 0; i < weaponSlots.Count; i++)
-    //                 {
-    //                     Weapon w = weaponSlots[i].item as Weapon;
-    // 
-    //                     if (w != null && w.data == chosenWeaponUpgrade)
-    //                     {
-    //                         if (chosenWeaponUpgrade.maxLevel <= w.currentLevel)
-    //                         {
-    //                             DisableUpgradeUI(upgradeOption);
-    //                             isLevelUp = false;
-    //                             break; 
-    //                         }
-    // 
-    //                         isLevelUp = true;
-    //                         upgradeOption.upgradeButton.onClick.AddListener(() => LevelUpWeapon(i, i));
-    //                         Weapon.Stats nextLevel = chosenWeaponUpgrade.GetLevelData(w.currentLevel + 1);
-    //                         upgradeOption.upgradeDescriptionDisplay.text = nextLevel.description;
-    //                         upgradeOption.upgradeNameDisplay.text = nextLevel.name;
-    //                         upgradeOption.upgradeIcon.sprite = chosenWeaponUpgrade.icon;
-    //                         break;
-    //                     }
-    //                 }
-    // 
-    //                 if (!isLevelUp)
-    //                 {
-    //                     upgradeOption.upgradeButton.onClick.AddListener(() => Add(chosenWeaponUpgrade));
-    //                     upgradeOption.upgradeDescriptionDisplay.text = chosenWeaponUpgrade.baseStats.description;
-    //                     upgradeOption.upgradeNameDisplay.text = chosenWeaponUpgrade.baseStats.name;
-    //                     upgradeOption.upgradeIcon.sprite = chosenWeaponUpgrade.icon;
-    //                 }
-    //             }
-    //         }
-    //         else if (upgradeType == 2)
-    //         {
-    //             PassiveData chosenPassiveUpgrade = availablePassiveUpgrades[UnityEngine.Random.Range(0, availablePassiveUpgrades.Count)];
-    //             availablePassiveUpgrades.Remove(chosenPassiveUpgrade);
-    // 
-    //             if (chosenPassiveUpgrade != null)
-    //             {
-    //                 EnableUpgradeUI(upgradeOption);
-    // 
-    //                 bool isLevelUp = false;
-    //                 for (int i = 0; i < passiveSlots.Count; i++)
-    //                 {
-    //                     Passive p = passiveSlots[i].item as Passive;
-    // 
-    //                     if (p != null && p.data == chosenPassiveUpgrade)
-    //                     {
-    //                         if (chosenPassiveUpgrade.maxLevel <= p.currentLevel)
-    //                         {
-    //                             DisableUpgradeUI(upgradeOption);
-    //                             isLevelUp = false;
-    //                             break; 
-    //                         }
-    // 
-    //                         isLevelUp = true;
-    //                         upgradeOption.upgradeButton.onClick.AddListener(() => LevelUpPassiveItem(i, i));
-    //                         Passive.Modifier nextLevel = chosenPassiveUpgrade.GetLevelData(p.currentLevel + 1);
-    //                         upgradeOption.upgradeDescriptionDisplay.text = nextLevel.description;
-    //                         upgradeOption.upgradeNameDisplay.text = nextLevel.name;
-    //                         upgradeOption.upgradeIcon.sprite = chosenPassiveUpgrade.icon;
-    //                         break;
-    //                     }
-    //                 }
-    // 
-    //                 if (!isLevelUp)
-    //                 {
-    //                     upgradeOption.upgradeButton.onClick.AddListener(() => Add(chosenPassiveUpgrade));
-    //                     upgradeOption.upgradeDescriptionDisplay.text = chosenPassiveUpgrade.baseStats.description;
-    //                     upgradeOption.upgradeNameDisplay.text = chosenPassiveUpgrade.baseStats.name;
-    //                     upgradeOption.upgradeIcon.sprite = chosenPassiveUpgrade.icon;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 
     // Detemines what upgrade options should appear
     void ApplyUpgradeOptions()
@@ -556,7 +402,7 @@ public class PlayerInventory : MonoBehaviour
                     {
                         WeaponData data = chosenUpgrade as WeaponData;
                         upgradeOption.upgradeButton.onClick.AddListener(() => Add(chosenUpgrade));
-                        upgradeOption.upgradeDescriptionDisplay.text = data.baseStats.name;
+                        upgradeOption.upgradeDescriptionDisplay.text = data.baseStats.description;
                         upgradeOption.upgradeNameDisplay.text = data.baseStats.name;
                         upgradeOption.upgradeIcon.sprite = data.icon;
                     }
@@ -564,7 +410,7 @@ public class PlayerInventory : MonoBehaviour
                     {
                         PassiveData data = chosenUpgrade as PassiveData;
                         upgradeOption.upgradeButton.onClick.AddListener(() => Add(chosenUpgrade));
-                        upgradeOption.upgradeDescriptionDisplay.text = data.baseStats.name;
+                        upgradeOption.upgradeDescriptionDisplay.text = data.baseStats.description;
                         upgradeOption.upgradeNameDisplay.text = data.baseStats.name;
                         upgradeOption.upgradeIcon.sprite = data.icon;
                     }

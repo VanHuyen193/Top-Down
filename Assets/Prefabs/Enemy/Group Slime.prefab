@@ -58,6 +58,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Slime (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1607166
@@ -119,6 +123,10 @@ PrefabInstance:
     - target: {fileID: 4214749301788750535, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_Name
       value: Red Slime (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -182,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Slime (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.0357293
@@ -243,6 +255,10 @@ PrefabInstance:
     - target: {fileID: 4214749301788750535, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_Name
       value: Red Slime (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -306,6 +322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -367,6 +387,10 @@ PrefabInstance:
     - target: {fileID: 4214749301788750535, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_Name
       value: Red Slime (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -430,6 +454,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Slime (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.6071516
@@ -491,6 +519,10 @@ PrefabInstance:
     - target: {fileID: 4214749301788750535, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_Name
       value: Red Slime (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -554,6 +586,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Slime (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.0535867
@@ -615,6 +651,10 @@ PrefabInstance:
     - target: {fileID: 4214749301788750535, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_Name
       value: Red Slime (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -678,6 +718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Slime (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2500036
@@ -739,6 +783,10 @@ PrefabInstance:
     - target: {fileID: 4214749301788750535, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_Name
       value: Red Slime (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -802,6 +850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Slime (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.23214622
@@ -864,6 +916,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Slime (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2500036
@@ -925,6 +981,10 @@ PrefabInstance:
     - target: {fileID: 4214749301788750535, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_Name
       value: Red Slime (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242579607083466936, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8601379960533445727, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
       propertyPath: m_LocalPosition.x
