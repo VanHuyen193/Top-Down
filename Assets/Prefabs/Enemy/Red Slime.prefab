@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4242579607083466936}
   - component: {fileID: 4766522613863619315}
   - component: {fileID: 4641430975812807119}
+  - component: {fileID: -3200738040755425304}
   m_Layer: 0
   m_Name: Red Slime
   m_TagString: Enemy
@@ -203,3 +204,30 @@ MonoBehaviour:
   - name: Blue Gem
     itemPrefab: {fileID: 1107250609975504388, guid: ad41ff39584b5a94e9e68742bab4ba20, type: 3}
     dropRate: 100
+--- !u!50 &-3200738040755425304
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4214749301788750535}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
