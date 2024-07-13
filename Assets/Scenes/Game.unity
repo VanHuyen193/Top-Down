@@ -867,7 +867,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.56, y: 1.16}
+  m_Size: {x: 1, y: 1.1111112}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1240,10 +1240,6 @@ MonoBehaviour:
       enemyCount: 6
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: d1b5e2a6a4357534ba83aeb1a1ed8c16, type: 3}
-    - enemyName: Red Flight
-      enemyCount: 1
-      spawnCount: 0
-      enemyPrefab: {fileID: 3888655943418635405, guid: 0b380a96e2e492147a60ee2ade7d668e, type: 3}
     waveQuota: 0
     spawnInterval: 1
     spawnCount: 0
@@ -1258,7 +1254,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: cc851098f143d2c4c8ddba647f7cd7c2, type: 3}
     waveQuota: 0
-    spawnInterval: 1
+    spawnInterval: 0.5
     spawnCount: 0
   - waveName: wave 3
     enemyGroups:
@@ -1271,7 +1267,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: cc851098f143d2c4c8ddba647f7cd7c2, type: 3}
     waveQuota: 0
-    spawnInterval: 0
+    spawnInterval: 0.5
     spawnCount: 0
   - waveName: wave 4
     enemyGroups:
@@ -1284,7 +1280,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: cc851098f143d2c4c8ddba647f7cd7c2, type: 3}
     waveQuota: 0
-    spawnInterval: 0
+    spawnInterval: 0.5
     spawnCount: 0
   - waveName: wave 5
     enemyGroups:
@@ -1297,7 +1293,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: cc851098f143d2c4c8ddba647f7cd7c2, type: 3}
     waveQuota: 0
-    spawnInterval: 0
+    spawnInterval: 1
     spawnCount: 0
   - waveName: wave 6
     enemyGroups:
@@ -1306,7 +1302,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: f062b1a57f6ce8741a96dc7560ae8f87, type: 3}
     waveQuota: 0
-    spawnInterval: 0
+    spawnInterval: 1
     spawnCount: 0
   - waveName: wave 7
     enemyGroups:
@@ -1315,7 +1311,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: f062b1a57f6ce8741a96dc7560ae8f87, type: 3}
     waveQuota: 0
-    spawnInterval: 0
+    spawnInterval: 0.5
     spawnCount: 0
   - waveName: wave 8
     enemyGroups:
@@ -1324,7 +1320,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: f062b1a57f6ce8741a96dc7560ae8f87, type: 3}
     waveQuota: 0
-    spawnInterval: 0
+    spawnInterval: 0.5
     spawnCount: 0
   - waveName: wave 9
     enemyGroups:
@@ -1333,7 +1329,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 4214749301788750535, guid: f062b1a57f6ce8741a96dc7560ae8f87, type: 3}
     waveQuota: 0
-    spawnInterval: 0
+    spawnInterval: 0.5
     spawnCount: 0
   - waveName: wave 10
     enemyGroups:
@@ -1342,7 +1338,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 3888655943418635405, guid: 0b380a96e2e492147a60ee2ade7d668e, type: 3}
     waveQuota: 0
-    spawnInterval: 0
+    spawnInterval: 1
     spawnCount: 0
   currentWaveCount: 0
   enemiesAlive: 0
