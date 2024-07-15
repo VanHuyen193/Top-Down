@@ -41,6 +41,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("UI")]
     public TMPro.TextMeshProUGUI enemiesDeadText;
 
+    [Header("Boss")]
+    public GameObject boss;
+
+    bool isSpawnBoss = false;
+
     Transform player;
 
     // Start is called before the first frame update
@@ -122,6 +127,11 @@ public class EnemySpawner : MonoBehaviour
                     }
                 }
             }
+        }
+        if(enemiesAlive <= 0 && !isSpawnBoss)
+        {
+            Instantiate(boss, player.position, Quaternion.identity);
+            isSpawnBoss = true;
         }
     }
 

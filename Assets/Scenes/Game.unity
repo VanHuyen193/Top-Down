@@ -1334,11 +1334,11 @@ MonoBehaviour:
   - waveName: wave 10
     enemyGroups:
     - enemyName: Slime
-      enemyCount: 1
+      enemyCount: 300
       spawnCount: 0
-      enemyPrefab: {fileID: 3888655943418635405, guid: 0b380a96e2e492147a60ee2ade7d668e, type: 3}
+      enemyPrefab: {fileID: 4214749301788750535, guid: cc851098f143d2c4c8ddba647f7cd7c2, type: 3}
     waveQuota: 0
-    spawnInterval: 1
+    spawnInterval: 0.25
     spawnCount: 0
   currentWaveCount: 0
   enemiesAlive: 0
@@ -1359,6 +1359,7 @@ MonoBehaviour:
   - {fileID: 771039264}
   - {fileID: 367164706}
   enemiesDeadText: {fileID: 982328115}
+  boss: {fileID: 4214749301788750535, guid: 691a5944955872b4db850dc6d584ab01, type: 3}
 --- !u!4 &192177243
 Transform:
   m_ObjectHideFlags: 0
